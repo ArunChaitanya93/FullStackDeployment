@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matrix-frontend
+  template:
+    metadata:
+      labels:
+        app: matrix-frontend
+    spec:
+      containers:
+      - name: matrix-frontend
+        image: arunchaitanya93/matrix-frontend:latest
+        ports:
+        - containerPort: 80

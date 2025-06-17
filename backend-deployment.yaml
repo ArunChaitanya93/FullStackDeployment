@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: matrix-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: matrix-backend
+  template:
+    metadata:
+      labels:
+        app: matrix-backend
+    spec:
+      containers:
+      - name: matrix-backend
+        image: arunchaitanya93/matrix-backend:latest
+        ports:
+        - containerPort: 8080

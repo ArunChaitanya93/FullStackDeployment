@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Random Matrix Multiply</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2em auto; }
+    input { width: 4em; }
+    table { border-collapse: collapse; margin: 0.5em 0; }
+    td { border: 1px solid #ccc; padding: 0.3em; text-align: right; }
+  </style>
+</head>
+<body>
+  <h1>Random Square-Matrix Multiply</h1>
+
+  <label>Matrix size n:
+    <input type="number" id="size" min="1" value="3">
+  </label>
+  <button id="go">Go</button>
+
+  <div id="matrices">
+    <h2>Matrix A</h2><div id="A"></div>
+    <h2>Matrix B</h2><div id="B"></div>
+    <h2>Result A × B</h2><div id="R"></div>
+  </div>
+
+  <script>
+    function renderTable(el, M) {
+      let html = '<table>';
+      M.forEach(row => {
+        html += '<tr>' + row.map(v => `<td>${v}</td>`).join('') + '</tr>';
+      });
+      html += '</table>';
+      el.innerHTML = html;
+    }
+
+    document.getElementById('go').onclick = async () => {
+      const n = +document.getElementById('size').value;
+      if (n < 1) return alert('Size must be ≥1');
+      const resp = await fetch('/api/multiply', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ size: n })
+      });
+      const data = await resp.json();
+      if (data.error) return alert(data.error);
+      renderTable(document.getElementById('A'), data.A);
+      renderTable(document.getElementById('B'), data.B);
+      renderTable(document.getElementById('R'), data.result);
+    };
+  </script>
+</body>
+</html>
