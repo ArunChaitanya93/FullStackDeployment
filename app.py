@@ -25,4 +25,4 @@ def multiply():
         return jsonify(error=e.stderr.strip() or "C++ error"), 500
 
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
