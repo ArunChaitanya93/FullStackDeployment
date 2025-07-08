@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: matrix-backend-pvc
 spec:
+  storageClassName: ""
   accessModes:
     - ReadWriteOnce
   resources:
