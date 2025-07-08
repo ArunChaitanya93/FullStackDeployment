@@ -48,6 +48,7 @@ int main() {
 
     // output {"A":…, "B":…, "result":…} to /data/mat.txt
     json res = { {"A", A}, {"B", B}, {"result", R} };
+    std::cout << res;
     std::ofstream out("/data/mat.txt");
     out << res;
     out.close();
