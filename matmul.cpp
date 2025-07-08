@@ -46,9 +46,9 @@ int main() {
     Matrix B = random_matrix(n);
     Matrix R = multiply(A, B);
 
-    // output {"A":…, "B":…, "result":…} to mat.txt
+    // output {"A":…, "B":…, "result":…} to /data/mat.txt
     json res = { {"A", A}, {"B", B}, {"result", R} };
-    std::ofstream out("mat.txt");
+    std::ofstream out("/data/mat.txt");
     out << res;
     out.close();
     return 0;
