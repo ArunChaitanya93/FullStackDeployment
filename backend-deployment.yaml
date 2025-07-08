@@ -17,3 +17,10 @@ spec:
         image: arunchaitanya93/matrix-backend:latest
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: matmul-storage
+          mountPath: /data
+      volumes:
+      - name: matmul-storage
+        persistentVolumeClaim:
+          claimName: matrix-backend-pvc

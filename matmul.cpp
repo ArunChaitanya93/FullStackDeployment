@@ -3,6 +3,7 @@
 #include <vector>
 #include <random>
 #include <nlohmann/json.hpp>
+#include <fstream>
 using json = nlohmann::json;
 using Matrix = std::vector<std::vector<int>>;
 
@@ -45,8 +46,10 @@ int main() {
     Matrix B = random_matrix(n);
     Matrix R = multiply(A, B);
 
-    // output {"A":…, "B":…, "result":…}
+    // output {"A":…, "B":…, "result":…} to mat.txt
     json res = { {"A", A}, {"B", B}, {"result", R} };
-    std::cout << res;
+    std::ofstream out("mat.txt");
+    out << res;
+    out.close();
     return 0;
 }
